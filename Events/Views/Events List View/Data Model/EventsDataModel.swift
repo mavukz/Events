@@ -86,5 +86,5 @@ extension EventsDataModel: Decodable {
      title = "Nqwelo yam";
  }
  )
- ])**/
+ ])*/
 
