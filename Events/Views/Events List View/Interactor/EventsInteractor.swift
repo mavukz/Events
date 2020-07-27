@@ -15,7 +15,10 @@ class EventsInteractor: WebServicesManager, EventsBoundary {
         let requestBody = "GetEvents/11614155/1234"
         self.post(with: requestBody,
                   successBlock: { payData in
-                    print(payData)
+                    if let events = payData["Events"] as? [[String: Any]] {
+                        let response: [EventsDataModel] = EventsDataModel.model(from: events) ?? [EventsDataModel]()
+                        success(response)
+                    }
         }) { error in
             failure(error)
         }

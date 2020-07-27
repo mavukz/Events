@@ -10,10 +10,21 @@ import Foundation
 
 struct EventsDataModel {
     
-    var eventName: String
+    var fromDate: String
+    var toDate: String
+    var hasCheckedOut: Bool
+    var isCheckedIn: Bool
+    var location: String
+//    var media: Media?
     
-    enum CodingKeys: CodingKey {
-        case eventName
+    
+    private enum CodingKeys: String, CodingKey {
+        case fromDate = "dateFrom"
+        case toDate = "dateTo"
+        case hasCheckedOut
+        case isCheckedIn
+        case location
+//        case media
     }
 }
 
@@ -23,7 +34,31 @@ extension EventsDataModel: Decodable {
     
     init(with decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        eventName = try container.decodeIfPresent(String.self, forKey: .eventName) ?? ""
+        fromDate = try container.decodeIfPresent(String.self, forKey: .fromDate) ?? ""
+        toDate = try container.decodeIfPresent(String.self, forKey: .toDate) ?? ""
+        hasCheckedOut = try container.decodeIfPresent(Bool.self, forKey: .hasCheckedOut) ?? false
+        isCheckedIn = try container.decodeIfPresent(Bool.self, forKey: .isCheckedIn) ?? false
+        location = try container.decodeIfPresent(String.self, forKey: .location) ?? ""
+//        media = try container.decodeIfPresent(Media.self, forKey: .media)
+    }
+}
+
+struct Media {
+    
+    var mediaURL: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case mediaURL = "getMediaUrl"
+    }
+}
+
+// MARK: - Decoder
+
+extension Media: Decodable {
+    
+    init(with decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        mediaURL = try container.decodeIfPresent(String.self, forKey: .mediaURL) ?? ""
     }
 }
 
