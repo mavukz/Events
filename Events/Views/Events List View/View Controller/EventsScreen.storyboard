@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="40K-jc-qzU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="40K-jc-qzU">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -14,9 +14,28 @@
                     <view key="view" contentMode="scaleToFill" id="uTb-Rc-hjl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iBo-yV-Psq">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="40K-jc-qzU" id="AUN-yz-Ax7"/>
+                                    <outlet property="delegate" destination="40K-jc-qzU" id="79Z-vw-lyV"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="upu-On-kEH" firstAttribute="bottom" secondItem="iBo-yV-Psq" secondAttribute="bottom" id="8g6-vW-gs2"/>
+                            <constraint firstItem="iBo-yV-Psq" firstAttribute="leading" secondItem="upu-On-kEH" secondAttribute="leading" id="azb-PK-mUe"/>
+                            <constraint firstItem="upu-On-kEH" firstAttribute="trailing" secondItem="iBo-yV-Psq" secondAttribute="trailing" id="cUo-zo-LAo"/>
+                            <constraint firstItem="iBo-yV-Psq" firstAttribute="top" secondItem="upu-On-kEH" secondAttribute="top" id="y8w-iX-Nz2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="upu-On-kEH"/>
                     </view>
+                    <connections>
+                        <outlet property="eventsTableView" destination="iBo-yV-Psq" id="ENE-DO-RX7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ln-pf-I3A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

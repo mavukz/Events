@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventsHeaderCell" customModule="Events" customModuleProvider="target">
+            <connections>
+                <outlet property="eventCountButton" destination="Cpg-dG-1Pt" id="VrG-TH-RJK"/>
+                <outlet property="eventTitleLabel" destination="2lx-8y-wQ9" id="zXl-Bv-qLj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="259" id="JGY-MG-4Mz">
+            <rect key="frame" x="0.0" y="0.0" width="450" height="79"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JGY-MG-4Mz" id="fU7-Qn-uAo">
+                <rect key="frame" x="0.0" y="0.0" width="450" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cpg-dG-1Pt">
+                        <rect key="frame" x="20" y="14.5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="M8c-dg-Rb7"/>
+                            <constraint firstAttribute="width" constant="50" id="z7J-M2-IoM"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lx-8y-wQ9">
+                        <rect key="frame" x="90" y="29" width="43" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Cpg-dG-1Pt" secondAttribute="bottom" constant="14.5" id="7Y9-vW-vmo"/>
+                    <constraint firstItem="Cpg-dG-1Pt" firstAttribute="leading" secondItem="fU7-Qn-uAo" secondAttribute="leading" constant="20" id="8Pw-IV-vGw"/>
+                    <constraint firstItem="2lx-8y-wQ9" firstAttribute="centerY" secondItem="Cpg-dG-1Pt" secondAttribute="centerY" id="JPY-HN-tUF"/>
+                    <constraint firstItem="Cpg-dG-1Pt" firstAttribute="top" secondItem="fU7-Qn-uAo" secondAttribute="top" constant="14.5" id="q9B-Mk-yjG"/>
+                    <constraint firstItem="2lx-8y-wQ9" firstAttribute="leading" secondItem="Cpg-dG-1Pt" secondAttribute="trailing" constant="20" id="ubV-Dt-a6a"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="185.50724637681162" y="-3.0133928571428572"/>
+        </tableViewCell>
+    </objects>
+</document>

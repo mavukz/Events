@@ -15,8 +15,11 @@ struct EventsDataModel {
     var hasCheckedOut: Bool
     var isCheckedIn: Bool
     var location: String
+    var registrationStatus: Int
+    var removalDate: String
+    var status: Int
+    var title: String
 //    var media: Media?
-    
     
     private enum CodingKeys: String, CodingKey {
         case fromDate = "dateFrom"
@@ -25,6 +28,10 @@ struct EventsDataModel {
         case isCheckedIn
         case location
 //        case media
+        case registrationStatus
+        case removalDate
+        case status
+        case title
     }
 }
 
@@ -40,6 +47,10 @@ extension EventsDataModel: Decodable {
         isCheckedIn = try container.decodeIfPresent(Bool.self, forKey: .isCheckedIn) ?? false
         location = try container.decodeIfPresent(String.self, forKey: .location) ?? ""
 //        media = try container.decodeIfPresent(Media.self, forKey: .media)
+        registrationStatus = try container.decodeIfPresent(Int.self, forKey: .registrationStatus) ?? -1
+        removalDate = try container.decodeIfPresent(String.self, forKey: .removalDate) ?? ""
+        status = try container.decodeIfPresent(Int.self, forKey: .fromDate) ?? -1
+        title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
     }
 }
 
