@@ -12,12 +12,14 @@ import UIKit
 class EventsViewController: UIViewController {
     
     @IBOutlet private var eventsTableView: UITableView!
+    @IBOutlet private var loadingIndicatorView: UIActivityIndicatorView!
     
     private lazy var viewModel = EventsViewModel(delegate: self,
                                                  interactor: EventsInteractor())
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingIndicatorView.startAnimating()
         viewModel.fetchEvents()
         configureTableView()
     }
@@ -45,6 +47,7 @@ extension EventsViewController: EventsViewModelDelegate {
     func refreshViewcontents() {
         DispatchQueue.main.async {
             self.eventsTableView.reloadData()
+            self.loadingIndicatorView.stopAnimating()
         }
     }
 }

@@ -65,8 +65,9 @@ class EventsViewModel {
     }
     
     private func processEvents(from events: [EventsDataModel]) {
-//        for event in events {
-            // if from date == now and toDate < now add to section 0 for live events else add to section 2 for upcoming events
-//        }
+        for event in events {
+//             if from date == now and toDate < now add to section 0 for live events else add to section 2 for upcoming events
+            
+        }
     }
 }

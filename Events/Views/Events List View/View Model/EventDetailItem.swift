@@ -8,10 +8,16 @@
 
 import Foundation
 
+enum EventType {
+    case live
+    case upcoming
+}
+
 struct EventDetailItem {
     
     var title: String
     var location: String
     var startDate: Date
     var endDate: Date
+    var eventType: EventType
 }

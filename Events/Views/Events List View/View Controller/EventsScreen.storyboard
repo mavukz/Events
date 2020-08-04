@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iBo-yV-Psq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iBo-yV-Psq">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
@@ -23,10 +23,19 @@
                                     <outlet property="delegate" destination="40K-jc-qzU" id="79Z-vw-lyV"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ORC-oL-1xu">
+                                <rect key="frame" x="162.66666666666666" y="381" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="diG-mK-Vcc"/>
+                                    <constraint firstAttribute="height" constant="50" id="teU-aG-pf2"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="ORC-oL-1xu" firstAttribute="centerX" secondItem="uTb-Rc-hjl" secondAttribute="centerX" id="3nB-3n-8dj"/>
                             <constraint firstItem="upu-On-kEH" firstAttribute="bottom" secondItem="iBo-yV-Psq" secondAttribute="bottom" id="8g6-vW-gs2"/>
+                            <constraint firstItem="ORC-oL-1xu" firstAttribute="centerY" secondItem="uTb-Rc-hjl" secondAttribute="centerY" id="NTY-E7-bbc"/>
                             <constraint firstItem="iBo-yV-Psq" firstAttribute="leading" secondItem="upu-On-kEH" secondAttribute="leading" id="azb-PK-mUe"/>
                             <constraint firstItem="upu-On-kEH" firstAttribute="trailing" secondItem="iBo-yV-Psq" secondAttribute="trailing" id="cUo-zo-LAo"/>
                             <constraint firstItem="iBo-yV-Psq" firstAttribute="top" secondItem="upu-On-kEH" secondAttribute="top" id="y8w-iX-Nz2"/>
@@ -35,6 +44,7 @@
                     </view>
                     <connections>
                         <outlet property="eventsTableView" destination="iBo-yV-Psq" id="ENE-DO-RX7"/>
+                        <outlet property="loadingIndicatorView" destination="ORC-oL-1xu" id="wyo-zs-uQf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ln-pf-I3A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
