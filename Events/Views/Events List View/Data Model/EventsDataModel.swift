@@ -19,7 +19,7 @@ struct EventsDataModel {
     var status: Int
     var title: String
     var location: String
-    //    var media: Media?
+        var media:[Media]?
     
     private enum CodingKeys: String, CodingKey {
         case fromDate = "dateFrom"
@@ -27,7 +27,7 @@ struct EventsDataModel {
         case removalDate
         case hasCheckedOut
         case isCheckedIn
-        //        case media
+                case media
         case registrationStatus
         case status
         case title
@@ -50,7 +50,7 @@ extension EventsDataModel: Decodable {
         hasCheckedOut = try container.decodeIfPresent(Bool.self, forKey: .hasCheckedOut) ?? false
         isCheckedIn = try container.decodeIfPresent(Bool.self, forKey: .isCheckedIn) ?? false
         
-        //        media = try container.decodeIfPresent(Media.self, forKey: .media)
+                media = try container.decodeIfPresent([Media].self, forKey: .media)
         registrationStatus = try container.decodeIfPresent(Int.self, forKey: .registrationStatus) ?? -1
         status = try container.decodeIfPresent(Int.self, forKey: .status) ?? -1
         title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
@@ -71,7 +71,7 @@ struct Media {
 
 extension Media: Decodable {
     
-    init(with decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         mediaURL = try container.decodeIfPresent(String.self, forKey: .mediaURL) ?? ""
     }
