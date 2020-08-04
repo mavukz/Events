@@ -9,7 +9,7 @@
 import Foundation
 
 struct DateFormats {
-    static let SimpleDateFormat = "yyyy-MM-dd HH:mm:ss"
+    static let SimpleDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
 }
 
 struct EventsDateFormatter {

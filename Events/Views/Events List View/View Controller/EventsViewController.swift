@@ -39,9 +39,18 @@ class EventsViewController: UIViewController {
 // MARK: - EventsViewModelDelegate
 
 extension EventsViewController: EventsViewModelDelegate {
-   
+    
     func showErrorMessage(_ message: String) {
-        //handle error with dialog or failure screen
+        let alertViewController = UIAlertController(title: "Error",
+                                                    message: message,
+                                                    preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK",
+                                        style: .default) { _ in
+                                            alertViewController.dismiss(animated: true)
+                                            self.navigationController?.popViewController(animated: true)
+        }
+        alertViewController.addAction(alertAction)
+        self.present(alertViewController, animated: true)
     }
     
     func refreshViewcontents() {

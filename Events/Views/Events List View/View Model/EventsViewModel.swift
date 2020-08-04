@@ -23,7 +23,7 @@ class EventsViewModel {
                                 "Upcoming Event(s)"];
     
     init(delegate: EventsViewModelDelegate,
-        interactor: EventsBoundary) {
+         interactor: EventsBoundary) {
         self.delegate = delegate
         self.interactor = interactor
     }
@@ -43,7 +43,7 @@ class EventsViewModel {
         if eventItems.count > indexPath.section {
             let eventItemsInSection = eventItems[indexPath.section]
             if eventItemsInSection.count > indexPath.row {
-             return eventItemsInSection[indexPath.row]
+                return eventItemsInSection[indexPath.row]
             }
         }
         return nil
@@ -58,16 +58,44 @@ class EventsViewModel {
     
     func fetchEvents() {
         interactor.fetchEvents(successBlock: { [weak self] response in
+            self?.processEvents(from: response)
             self?.delegate?.refreshViewcontents()
         }) { [weak self] error in
             self?.delegate?.showErrorMessage(error.localizedDescription)
         }
     }
     
-    private func processEvents(from events: [EventsDataModel]) {
-        for event in events {
-//             if from date == now and toDate < now add to section 0 for live events else add to section 2 for upcoming events
-            
+    // MARK: - Private
+    
+    private func processEvents(from responseEvents: [EventsDataModel]) {
+        var liveEvents = [EventsDataModel]()
+        var upcomingEvents = [EventsDataModel]()
+        for event in responseEvents {
+            if Date() >= event.fromDate && Date() < event.toDate {
+                liveEvents.append(event)
+            } else if event.fromDate > Date() {
+                upcomingEvents.append(event)
+            }
         }
+        
+        if !liveEvents.isEmpty {
+            events.append(liveEvents)
+            createEventItems(from: liveEvents)
+        }
+        
+        if !upcomingEvents.isEmpty {
+            events.append(upcomingEvents)
+            createEventItems(from: upcomingEvents)
+        }
+    }
+    
+    private func createEventItems(from events: [EventsDataModel]) {
+        let items = events.map {
+            EventDetailItem(title: $0.title,
+                            location: $0.location,
+                            startDate: $0.fromDate,
+                            endDate: $0.toDate)
+        }
+        eventItems.append(items)
     }
 }

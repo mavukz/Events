@@ -19,5 +19,20 @@ struct EventDetailItem {
     var location: String
     var startDate: Date
     var endDate: Date
-    var eventType: EventType
+    var eventType: EventType!
+    
+    init(title: String,
+         location: String,
+         startDate: Date,
+         endDate: Date) {
+        self.title = title
+        self.location = location
+        self.startDate = startDate
+        self.endDate = endDate
+        configureEventType()
+    }
+    
+    private mutating func configureEventType() {
+        eventType = (Date() >= startDate && Date() < endDate) ? .live : .upcoming
+    }
 }

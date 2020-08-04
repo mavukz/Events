@@ -6,9 +6,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventsDetailedTableViewCell" customModule="Events" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailedCell" rowHeight="98" id="m4q-Kb-rzQ">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailedCell" id="m4q-Kb-rzQ" customClass="EventsDetailedTableViewCell" customModule="Events" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="422" height="250"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m4q-Kb-rzQ" id="Ix3-j2-Pz6">
@@ -79,6 +79,14 @@
                     <constraint firstAttribute="trailing" secondItem="puu-eI-TFC" secondAttribute="trailing" id="rAG-LL-izf"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="checkinButton" destination="0qF-8e-EPI" id="nRC-wm-yFt"/>
+                <outlet property="descriptionLabel" destination="fhn-pc-Lmp" id="3a9-b8-giC"/>
+                <outlet property="detailedView" destination="j96-a7-2Cy" id="kRb-hu-t3I"/>
+                <outlet property="eventImageView" destination="b6W-em-4Mo" id="Cbi-n5-LKd"/>
+                <outlet property="titleLabel" destination="hf9-bu-RAI" id="UyA-uE-S30"/>
+                <outlet property="topDateLabel" destination="dUh-S9-jPp" id="G70-aQ-KT1"/>
+            </connections>
             <point key="canvasLocation" x="105.79710144927537" y="560.49107142857144"/>
         </tableViewCell>
     </objects>
