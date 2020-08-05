@@ -9,5 +9,10 @@
 import UIKit
 
 class EventDetailsViewController: UIViewController {
-     
+ 
+    private var eventItem: EventDetailItem!
+    
+    func populate(with eventItem: EventDetailItem) {
+        self.eventItem = eventItem
+    }
 }

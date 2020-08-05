@@ -21,6 +21,7 @@ class EventsViewModel {
     private var eventItems = [[EventDetailItem]]()
     private let headerTitles = ["Live Event(s)",
                                 "Upcoming Event(s)"];
+    private var currentEventItem: EventDetailItem?
     
     init(delegate: EventsViewModelDelegate,
          interactor: EventsBoundary) {
@@ -30,6 +31,10 @@ class EventsViewModel {
     
     var numberOfSections: Int {
         return events.count
+    }
+    
+    var selectedEventItem: EventDetailItem {
+        return currentEventItem ?? EventDetailItem()
     }
     
     func numberOfRows(inSection section: Int) -> Int {
@@ -49,12 +54,28 @@ class EventsViewModel {
         return nil
     }
     
-    func title(for section: Int) -> String {
+    func title(at section: Int) -> String {
         if headerTitles.count > section {
             return headerTitles[section]
         }
         return ""
     }
+    
+    func eventType(at section: Int) -> EventType {
+        return section == 0 ? .live : .upcoming
+    }
+    
+    
+    func selectedEventItem(at indexPath: IndexPath) {
+        if eventItems.count > indexPath.section {
+            let eventItemsInSection = eventItems[indexPath.section]
+            if eventItemsInSection.count > indexPath.row {
+                currentEventItem = eventItemsInSection[indexPath.row]
+            }
+        }
+    }
+    
+    // MARK: - Interactor
     
     func fetchEvents() {
         interactor.fetchEvents(successBlock: { [weak self] response in

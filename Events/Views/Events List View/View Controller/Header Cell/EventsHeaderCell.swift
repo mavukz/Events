@@ -9,18 +9,21 @@
 import UIKit
 
 class EventsHeaderCell: UITableViewCell {
-
+    
     @IBOutlet private var eventCountButton: UIButton!
     @IBOutlet private var eventTitleLabel: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         roundButton()
     }
     
-    func populate(with title: String, counter: String) {
+    func populate(with title: String,
+                  counter: String,
+                  eventType: EventType) {
         eventTitleLabel.text = title
         eventCountButton.setTitle(counter, for: .normal)
+        eventCountButton.backgroundColor = eventType == .live ? .systemGreen : .orange
     }
     
     // MARK: - Private

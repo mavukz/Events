@@ -32,6 +32,9 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b6W-em-4Mo">
                                         <rect key="frame" x="0.0" y="0.0" width="422" height="85"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="85" id="g0I-U6-eli"/>
+                                        </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j96-a7-2Cy">
                                         <rect key="frame" x="0.0" y="85" width="422" height="85"/>
@@ -66,7 +69,10 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="gy6-QY-xog"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <state key="normal" title="CHECK-IN  →">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
                     </button>
                 </subviews>
                 <constraints>

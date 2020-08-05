@@ -15,11 +15,11 @@ enum EventType {
 
 struct EventDetailItem {
     
-    var title: String
-    var location: String
-    var startDate: Date
-    var endDate: Date
-    var eventType: EventType!
+    var title: String?
+    var location: String?
+    var startDate: Date?
+    var endDate: Date?
+    var eventType: EventType?
     
     init(title: String,
          location: String,
@@ -31,8 +31,13 @@ struct EventDetailItem {
         self.endDate = endDate
         configureEventType()
     }
+    init() { }
     
     private mutating func configureEventType() {
-        eventType = (Date() >= startDate && Date() < endDate) ? .live : .upcoming
+        if let sDate = startDate,
+            let eDate = endDate {
+            eventType = (Date() >= sDate && Date() < eDate) ? .live : .upcoming
+        }
+        
     }
 }

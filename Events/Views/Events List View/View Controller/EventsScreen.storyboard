@@ -45,11 +45,22 @@
                     <connections>
                         <outlet property="eventsTableView" destination="iBo-yV-Psq" id="ENE-DO-RX7"/>
                         <outlet property="loadingIndicatorView" destination="ORC-oL-1xu" id="wyo-zs-uQf"/>
+                        <segue destination="dFZ-IU-aga" kind="show" identifier="eventDetailsSegue" id="R8J-QM-uXA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ln-pf-I3A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="46" y="143"/>
+        </scene>
+        <!--EventDetailsScreen-->
+        <scene sceneID="Zwz-eq-MJM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EventDetailsScreen" id="dFZ-IU-aga" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="HvZ-n9-SKB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="man-au-8d0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="705" y="143"/>
         </scene>
     </scenes>
 </document>

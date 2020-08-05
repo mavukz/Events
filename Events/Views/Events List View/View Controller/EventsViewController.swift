@@ -24,6 +24,14 @@ class EventsViewController: UIViewController {
         configureTableView()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "eventDetailsSegue" {
+            let eventDetailsScreen = segue.destination as! EventDetailsViewController
+            eventDetailsScreen.populate(with: viewModel.selectedEventItem)
+        }
+    }
+    
     // MARK: - Private
     
     private func configureTableView() {
@@ -32,7 +40,7 @@ class EventsViewController: UIViewController {
         eventsTableView.register(UINib(nibName: "EventsDetailedTableViewCell", bundle: .main),
                                  forCellReuseIdentifier: "DetailedCell")
         eventsTableView.register(UINib(nibName: "EventsHeaderCell", bundle: .main),
-                                 forHeaderFooterViewReuseIdentifier: "HeaderCell")
+                                 forCellReuseIdentifier: "HeaderCell")
     }
 }
 
@@ -67,6 +75,7 @@ extension EventsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.selectedEventItem(at: indexPath)
     }
 }
 
@@ -86,7 +95,11 @@ extension EventsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? EventsHeaderCell
-        cell?.populate(with: viewModel.title(for: section), counter: "\(viewModel.numberOfRows(inSection: section))")
+        cell?.populate(with: viewModel.title(at: section),
+                       counter: "\(viewModel.numberOfRows(inSection: section))",
+            eventType: viewModel.eventType(at: section))
+        cell?.setNeedsUpdateConstraints()
+        cell?.updateConstraintsIfNeeded()
         return cell
     }
     
