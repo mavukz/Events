@@ -20,7 +20,7 @@ class EventDetailsViewController: BaseViewController {
     @IBOutlet private var bottomTitleLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
     @IBOutlet private var imageCollectionView: UICollectionView!
-    
+    @IBOutlet private var detailedStackView: UIStackView!
     
     private var dataModel: EventsDataModel!
     private lazy var viewModel = EventDetailsViewModel(delegate: self,
@@ -33,5 +33,32 @@ class EventDetailsViewController: BaseViewController {
     
     override func refreshViewcontents() {
         
+    }
+    
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
+        let index = sender.selectedSegmentIndex
+        switch index {
+        case 0:
+            imageCollectionView.isHidden = true
+            detailedStackView.isHidden = false
+            titleAndStatusView.isHidden = false
+        case 1:
+            imageCollectionView.isHidden = false
+            detailedStackView.isHidden = true
+            titleAndStatusView.isHidden = true
+        default:
+            return
+        }
+    }
+}
+
+extension EventDetailsViewController: UICollectionViewDataSource {
+   
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        UICollectionViewCell()
     }
 }

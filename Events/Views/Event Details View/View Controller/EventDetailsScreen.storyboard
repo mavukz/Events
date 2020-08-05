@@ -53,6 +53,9 @@
                                                     <segment title="First"/>
                                                     <segment title="Second"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="indexChanged:" destination="2bH-cf-Ujh" eventType="valueChanged" id="hhg-T4-d6b"/>
+                                                </connections>
                                             </segmentedControl>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -153,6 +156,7 @@
                         <outlet property="dayLabel" destination="VUN-Vh-dDs" id="02G-gB-Maz"/>
                         <outlet property="descriptionLabel" destination="3Vo-xU-Sdm" id="I9O-9l-RIV"/>
                         <outlet property="detailedImageView" destination="UI9-Xt-4LA" id="gDu-y9-UgO"/>
+                        <outlet property="detailedStackView" destination="6Ld-Jx-hQQ" id="Nm3-QH-IJl"/>
                         <outlet property="imageCollectionView" destination="vfw-89-6sb" id="AmY-QS-xqF"/>
                         <outlet property="monthLabel" destination="0Bf-wN-Zrd" id="sMg-o0-a8s"/>
                         <outlet property="segmentedControl" destination="Rtk-5r-fwd" id="lGp-Gb-YuF"/>
