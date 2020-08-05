@@ -23,4 +23,18 @@ class EventsInteractor: WebServicesManager, EventsBoundary {
             failure(error)
         }
     }
+    
+    func fetchEvent(with id: String,
+                    successBlock success: @escaping FetchEventSuccess,
+                    failureBlock failure: @escaping BoundaryFailureBlock) {
+        let requestBody = "GetEvents/\(id)/11614155/"
+        self.post(with: requestBody,
+                  successBlock: { payData in
+                    if let response: EventsDataModel = EventsDataModel.model(from: payData) {
+                        success(response)
+                    }
+        }) { error in
+            failure(error)
+        }
+    }
 }

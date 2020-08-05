@@ -8,22 +8,17 @@
 
 import Foundation
 
-protocol EventsViewModelDelegate: NSObjectProtocol {
-    func refreshViewcontents()
-    func showErrorMessage(_ message: String)
-}
-
 class EventsViewModel {
     
-    private weak var delegate: EventsViewModelDelegate?
+    private weak var delegate: BaseViewModelDelegate?
     private let interactor: EventsBoundary
     private var events = [[EventsDataModel]]()
     private var eventItems = [[EventDetailItem]]()
     private let headerTitles = ["Live Event(s)",
                                 "Upcoming Event(s)"];
-    private var currentEventItem: EventDetailItem?
+    private var currentEvent: EventsDataModel?
     
-    init(delegate: EventsViewModelDelegate,
+    init(delegate: BaseViewModelDelegate,
          interactor: EventsBoundary) {
         self.delegate = delegate
         self.interactor = interactor
@@ -33,8 +28,8 @@ class EventsViewModel {
         return events.count
     }
     
-    var selectedEventItem: EventDetailItem {
-        return currentEventItem ?? EventDetailItem()
+    var selectedEvent: EventsDataModel? {
+        return currentEvent
     }
     
     func numberOfRows(inSection section: Int) -> Int {
@@ -66,11 +61,11 @@ class EventsViewModel {
     }
     
     
-    func selectedEventItem(at indexPath: IndexPath) {
+    func selectedEvent(at indexPath: IndexPath) {
         if eventItems.count > indexPath.section {
-            let eventItemsInSection = eventItems[indexPath.section]
-            if eventItemsInSection.count > indexPath.row {
-                currentEventItem = eventItemsInSection[indexPath.row]
+            let eventsInSection = events[indexPath.section]
+            if eventsInSection.count > indexPath.row {
+                currentEvent = eventsInSection[indexPath.row]
             }
         }
     }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EventsViewController: UIViewController {
+class EventsViewController: BaseViewController {
     
     @IBOutlet private var eventsTableView: UITableView!
     @IBOutlet private var loadingIndicatorView: UIActivityIndicatorView!
@@ -28,7 +28,16 @@ class EventsViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "eventDetailsSegue" {
             let eventDetailsScreen = segue.destination as! EventDetailsViewController
-            eventDetailsScreen.populate(with: viewModel.selectedEventItem)
+            if let dataModel = viewModel.selectedEvent {
+                eventDetailsScreen.populate(with: dataModel)
+            }
+        }
+    }
+    
+    override func refreshViewcontents() {
+        DispatchQueue.main.async {
+            self.eventsTableView.reloadData()
+            self.loadingIndicatorView.stopAnimating()
         }
     }
     
@@ -44,38 +53,14 @@ class EventsViewController: UIViewController {
     }
 }
 
-// MARK: - EventsViewModelDelegate
-
-extension EventsViewController: EventsViewModelDelegate {
-    
-    func showErrorMessage(_ message: String) {
-        let alertViewController = UIAlertController(title: "Error",
-                                                    message: message,
-                                                    preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK",
-                                        style: .default) { _ in
-                                            alertViewController.dismiss(animated: true)
-                                            self.navigationController?.popViewController(animated: true)
-        }
-        alertViewController.addAction(alertAction)
-        self.present(alertViewController, animated: true)
-    }
-    
-    func refreshViewcontents() {
-        DispatchQueue.main.async {
-            self.eventsTableView.reloadData()
-            self.loadingIndicatorView.stopAnimating()
-        }
-    }
-}
-
 // MARK: - UITableViewDelegate
 
 extension EventsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.selectedEventItem(at: indexPath)
+        viewModel.selectedEvent(at: indexPath)
+        performSegue(withIdentifier: "eventDetailsSegue", sender: self)
     }
 }
 

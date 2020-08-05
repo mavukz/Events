@@ -9,8 +9,15 @@
 import Foundation
 
 typealias FetchEventsSuccess = (_ events: [EventsDataModel]) -> Void
+typealias FetchEventSuccess = (_ event: EventsDataModel) -> Void
+
 
 protocol EventsBoundary {
+    
     func fetchEvents(successBlock success: @escaping FetchEventsSuccess,
                      failureBlock failure: @escaping BoundaryFailureBlock)
+    
+    func fetchEvent(with id: String,
+                    successBlock success: @escaping FetchEventSuccess,
+                    failureBlock failure: @escaping BoundaryFailureBlock)
 }

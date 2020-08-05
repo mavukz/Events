@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		75242FEA24D9FB4B00CC6428 /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75242FE924D9FB4B00CC6428 /* Date+String.swift */; };
 		75456CC324DA0A6100EDFD5C /* Decodable+CreateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75456CC224DA0A6100EDFD5C /* Decodable+CreateModel.swift */; };
+		75456CCB24DB3C6800EDFD5C /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75456CCA24DB3C6800EDFD5C /* EventDetailsViewModel.swift */; };
+		75456CCE24DB3CD400EDFD5C /* BaseViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75456CCD24DB3CD400EDFD5C /* BaseViewModelDelegate.swift */; };
+		75456CD024DB3F0B00EDFD5C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75456CCF24DB3F0B00EDFD5C /* BaseViewController.swift */; };
 		7590532024D094EB00DA2597 /* EventsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590531F24D094EB00DA2597 /* EventsHeaderCell.swift */; };
 		7590532224D0952400DA2597 /* EventsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7590532124D0952400DA2597 /* EventsHeaderCell.xib */; };
 		7590532424D0987F00DA2597 /* EventsDetailedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7590532324D0987F00DA2597 /* EventsDetailedTableViewCell.xib */; };
@@ -31,6 +34,9 @@
 /* Begin PBXFileReference section */
 		75242FE924D9FB4B00CC6428 /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		75456CC224DA0A6100EDFD5C /* Decodable+CreateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Decodable+CreateModel.swift"; sourceTree = "<group>"; };
+		75456CCA24DB3C6800EDFD5C /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
+		75456CCD24DB3CD400EDFD5C /* BaseViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelDelegate.swift; sourceTree = "<group>"; };
+		75456CCF24DB3F0B00EDFD5C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7590531F24D094EB00DA2597 /* EventsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsHeaderCell.swift; sourceTree = "<group>"; };
 		7590532124D0952400DA2597 /* EventsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsHeaderCell.xib; sourceTree = "<group>"; };
 		7590532324D0987F00DA2597 /* EventsDetailedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsDetailedTableViewCell.xib; sourceTree = "<group>"; };
@@ -72,6 +78,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		75456CCC24DB3CBF00EDFD5C /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				75E2896024CF4D53005B7215 /* Interactor */,
+				75456CCD24DB3CD400EDFD5C /* BaseViewModelDelegate.swift */,
+				75456CCF24DB3F0B00EDFD5C /* BaseViewController.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		7590531D24D0945A00DA2597 /* Detailed Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,7 +109,6 @@
 		7590532924D0BCB200DA2597 /* Event Details View */ = {
 			isa = PBXGroup;
 			children = (
-				7590532C24D0BCF700DA2597 /* Interactor */,
 				7590532B24D0BCEB00DA2597 /* View Controller */,
 				7590532A24D0BCE100DA2597 /* View Model */,
 			);
@@ -103,6 +118,7 @@
 		7590532A24D0BCE100DA2597 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				75456CCA24DB3C6800EDFD5C /* EventDetailsViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -114,13 +130,6 @@
 				7590532F24D0BED300DA2597 /* EventDetailsScreen.storyboard */,
 			);
 			path = "View Controller";
-			sourceTree = "<group>";
-		};
-		7590532C24D0BCF700DA2597 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		75E2893524CF494B005B7215 = {
@@ -155,6 +164,7 @@
 		75E2895624CF4B93005B7215 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				75456CCC24DB3CBF00EDFD5C /* Shared */,
 				75E2895724CF4BAD005B7215 /* Events List View */,
 				7590532924D0BCB200DA2597 /* Event Details View */,
 			);
@@ -166,7 +176,6 @@
 			children = (
 				75E2895924CF4BDD005B7215 /* View Controller */,
 				75E2895824CF4BBB005B7215 /* View Model */,
-				75E2896024CF4D53005B7215 /* Interactor */,
 				75E2896A24CF5050005B7215 /* Data Model */,
 			);
 			path = "Events List View";
@@ -293,9 +302,12 @@
 				75E2896624CF4DC6005B7215 /* EventsBoundary.swift in Sources */,
 				75E2894224CF494C005B7215 /* AppDelegate.swift in Sources */,
 				7590532624D09CD700DA2597 /* EventsDetailedTableViewCell.swift in Sources */,
+				75456CCE24DB3CD400EDFD5C /* BaseViewModelDelegate.swift in Sources */,
 				7590532E24D0BDB900DA2597 /* EventDetailsViewController.swift in Sources */,
 				75456CC324DA0A6100EDFD5C /* Decodable+CreateModel.swift in Sources */,
 				75E2895D24CF4C23005B7215 /* EventsViewController.swift in Sources */,
+				75456CD024DB3F0B00EDFD5C /* BaseViewController.swift in Sources */,
+				75456CCB24DB3C6800EDFD5C /* EventDetailsViewModel.swift in Sources */,
 				75242FEA24D9FB4B00CC6428 /* Date+String.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,11 +8,18 @@
 
 import UIKit
 
-class EventDetailsViewController: UIViewController {
- 
-    private var eventItem: EventDetailItem!
+class EventDetailsViewController: BaseViewController {
     
-    func populate(with eventItem: EventDetailItem) {
-        self.eventItem = eventItem
+    private var dataModel: EventsDataModel!
+    private lazy var viewModel = EventDetailsViewModel(delegate: self,
+                                                       dataModel: dataModel,
+                                                       interactor: EventsInteractor())
+    
+    func populate(with dataModel: EventsDataModel) {
+        self.dataModel = dataModel
+    }
+    
+    override func refreshViewcontents() {
+        
     }
 }
