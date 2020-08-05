@@ -148,6 +148,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1K1-Lo-HPr"/>
                     </view>
+                    <connections>
+                        <outlet property="bottomTitleLabel" destination="nXm-Po-3tJ" id="Vg8-su-WKw"/>
+                        <outlet property="dayLabel" destination="VUN-Vh-dDs" id="02G-gB-Maz"/>
+                        <outlet property="descriptionLabel" destination="3Vo-xU-Sdm" id="I9O-9l-RIV"/>
+                        <outlet property="detailedImageView" destination="UI9-Xt-4LA" id="gDu-y9-UgO"/>
+                        <outlet property="imageCollectionView" destination="vfw-89-6sb" id="AmY-QS-xqF"/>
+                        <outlet property="monthLabel" destination="0Bf-wN-Zrd" id="sMg-o0-a8s"/>
+                        <outlet property="segmentedControl" destination="Rtk-5r-fwd" id="lGp-Gb-YuF"/>
+                        <outlet property="statusLabel" destination="rMr-WB-9NL" id="cks-0g-66n"/>
+                        <outlet property="titleAndStatusView" destination="Ytn-Mg-SjQ" id="Mpr-9K-d1t"/>
+                        <outlet property="titleLabel" destination="qNr-YO-ioF" id="kVW-ia-2MV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0z-5l-XSO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

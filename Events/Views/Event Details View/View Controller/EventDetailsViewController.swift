@@ -10,6 +10,18 @@ import UIKit
 
 class EventDetailsViewController: BaseViewController {
     
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var statusLabel: UILabel!
+    @IBOutlet private var titleAndStatusView: UIView!
+    @IBOutlet private var segmentedControl: UISegmentedControl!
+    @IBOutlet private var detailedImageView: UIImageView!
+    @IBOutlet private var monthLabel: UILabel!
+    @IBOutlet private var dayLabel: UILabel!
+    @IBOutlet private var bottomTitleLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var imageCollectionView: UICollectionView!
+    
+    
     private var dataModel: EventsDataModel!
     private lazy var viewModel = EventDetailsViewModel(delegate: self,
                                                        dataModel: dataModel,
