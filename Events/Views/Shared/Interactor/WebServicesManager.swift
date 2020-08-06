@@ -50,10 +50,11 @@ class WebServicesManager {
         task.resume()
     }
     
-    func post(withImageURL url: String,
+    func post(withImageURL urlString: String,
               successBlock success: @escaping BoundarySuccessBlockImage,
               failureBlock failure: @escaping BoundaryFailureBlock) {
-        let url = URL(string: url)!
+        let encodedURL = urlString.replacingOccurrences(of: " ", with: "%20")
+        let url = URL(string: encodedURL)!
         var urlRequest = URLRequest(url: url)
         urlRequest.addValue(WebServicesManager.ApiKey, forHTTPHeaderField: "ApiKey")
         urlRequest.addValue(WebServicesManager.AppId, forHTTPHeaderField: "AppId")

@@ -22,6 +22,7 @@ class EventDetailsViewController: BaseViewController {
     @IBOutlet private var imageCollectionView: UICollectionView!
     @IBOutlet private var detailedStackView: UIStackView!
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet private var imageCollectionViewHeightConstraint: NSLayoutConstraint!
     
     private var dataModel: EventsDataModel!
     private lazy var viewModel = EventDetailsViewModel(delegate: self,
@@ -92,6 +93,8 @@ class EventDetailsViewController: BaseViewController {
     
     private func showSecondSegment() {
         imageCollectionView.isHidden = false
+        //hack please fix autolayout
+        imageCollectionViewHeightConstraint.constant = imageCollectionView.superview!.frame.size.height
         detailedStackView.isHidden = true
     }
     
@@ -105,30 +108,20 @@ class EventDetailsViewController: BaseViewController {
     }
     
     private func configureCollectionViewCells() {
-        imageCollectionView.register(UINib(nibName: "EventCollectionViewCell", bundle: .main),
-                                     forCellWithReuseIdentifier: "imageCollectionCell")
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
     }
 }
 
-extension EventDetailsViewController: UICollectionViewDataSource {
+extension EventDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.numberOfItems
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCollectionCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
         viewModel.fetchImageForEvent(at: indexPath)
         return cell
     }
-}
-
-extension EventDetailsViewController: UICollectionViewDelegate {
-    
 }

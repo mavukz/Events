@@ -49,18 +49,32 @@ class EventDetailsViewModel {
     func fetchEvent() {
         interactor.fetchEvent(with: dataModel.eventID,
                               successBlock: { [weak self] response in
-                                print(response)
+                                // currently returning empty success response, not updating current data model
                                 self?.delegate?.refreshViewContents()
         }) { [weak self] error in
             self?.delegate?.showErrorMessage(error.localizedDescription)
         }
     }
     
-    func fetchImageForEvent(at indexPath: IndexPath? = nil) {
+    func fetchImageForEvent() {
         if let url = dataModel.media?.first?.mediaURL {
             interactor.fetchImage(with: url,
                                   successBlock: { [weak self] response in
-                                    self?.delegate?.setImage(at: indexPath, with: response)
+                                    self?.delegate?.setImage(at: nil, with: response)
+            }) { [weak self] error in
+                self?.delegate?.showErrorMessage(error.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchImageForEvent(at indexPath: IndexPath) {
+        if let media = dataModel.media,
+            media.count > indexPath.row {
+            let url = media[indexPath.row].mediaURL
+            interactor.fetchImage(with: url,
+                                  successBlock: { [weak self] response in
+                                    self?.delegate?.setImage(at: indexPath,
+                                                             with: response)
             }) { [weak self] error in
                 self?.delegate?.showErrorMessage(error.localizedDescription)
             }
