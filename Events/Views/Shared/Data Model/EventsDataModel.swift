@@ -44,11 +44,11 @@ extension EventsDataModel: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         fromDate = try Date.from(string: container.decodeIfPresent(String.self, forKey: .fromDate) ?? "",
-                                 format: DateFormats.SimpleDateFormat) ?? Date()
+                                 format: DateFormats.LongDateFormat) ?? Date()
         toDate = try Date.from(string: container.decodeIfPresent(String.self, forKey: .toDate) ?? "",
-                               format: DateFormats.SimpleDateFormat) ?? Date()
+                               format: DateFormats.LongDateFormat) ?? Date()
         removalDate = try Date.from(string: container.decodeIfPresent(String.self, forKey: .removalDate) ?? "",
-                                    format: DateFormats.SimpleDateFormat) ?? Date()
+                                    format: DateFormats.LongDateFormat) ?? Date()
         hasCheckedOut = try container.decodeIfPresent(Bool.self, forKey: .hasCheckedOut) ?? false
         isCheckedIn = try container.decodeIfPresent(Bool.self, forKey: .isCheckedIn) ?? false
         registrationStatus = try container.decodeIfPresent(Int.self, forKey: .registrationStatus) ?? -1

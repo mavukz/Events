@@ -16,10 +16,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cpg-dG-1Pt">
-                        <rect key="frame" x="20" y="14.5" width="40" height="40"/>
+                        <rect key="frame" x="10" y="14.5" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="M8c-dg-Rb7"/>
-                            <constraint firstAttribute="width" constant="40" id="z7J-M2-IoM"/>
+                            <constraint firstAttribute="height" constant="35" id="M8c-dg-Rb7"/>
+                            <constraint firstAttribute="width" constant="35" id="z7J-M2-IoM"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <state key="normal">
@@ -27,15 +27,15 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lx-8y-wQ9">
-                        <rect key="frame" x="80" y="24" width="43" height="21"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <rect key="frame" x="65" y="23" width="38.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Cpg-dG-1Pt" secondAttribute="bottom" constant="14.5" id="7Y9-vW-vmo"/>
-                    <constraint firstItem="Cpg-dG-1Pt" firstAttribute="leading" secondItem="fU7-Qn-uAo" secondAttribute="leading" constant="20" id="8Pw-IV-vGw"/>
+                    <constraint firstItem="Cpg-dG-1Pt" firstAttribute="leading" secondItem="fU7-Qn-uAo" secondAttribute="leading" constant="10" id="8Pw-IV-vGw"/>
                     <constraint firstItem="2lx-8y-wQ9" firstAttribute="centerY" secondItem="Cpg-dG-1Pt" secondAttribute="centerY" id="JPY-HN-tUF"/>
                     <constraint firstItem="Cpg-dG-1Pt" firstAttribute="top" secondItem="fU7-Qn-uAo" secondAttribute="top" constant="14.5" id="q9B-Mk-yjG"/>
                     <constraint firstItem="2lx-8y-wQ9" firstAttribute="leading" secondItem="Cpg-dG-1Pt" secondAttribute="trailing" constant="20" id="ubV-Dt-a6a"/>

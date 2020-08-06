@@ -35,6 +35,10 @@ class EventDetailsViewController: BaseViewController {
         viewModel.fetchEvent()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     override func refreshViewcontents() {
         DispatchQueue.main.async {
             self.showFirstSegment()

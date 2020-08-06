@@ -19,11 +19,11 @@ class EventsDetailedTableViewCell: UITableViewCell {
     
     func populate(with eventItem: EventDetailItem) {
         topDateLabel.text = Date.string(date: eventItem.startDate,
-                                        format: DateFormats.SimpleDateFormat)
+                                        format: DateFormats.SimpleDateFormatWithDayName)
         titleLabel.text = eventItem.title
-        detailedView.backgroundColor = eventItem.eventType == .live ? UIColor.green : UIColor.systemGray
-        descriptionLabel.text = "\(eventItem.startDate)\n\(eventItem.location)\n"
-        checkinButton.backgroundColor = eventItem.eventType == .live ? UIColor.systemGreen : UIColor.lightGray
+        detailedView.backgroundColor = eventItem.eventType == .live ? UIColor.green : UIColor.systemGray6
+        descriptionLabel.text = "\(Date.string(date: eventItem.startDate, format: DateFormats.SimpleDateFormat) ?? "")\n\(eventItem.location)\n\(Date.string(date: eventItem.startDate, format: DateFormats.TimeFormat) ?? "") - \(Date.string(date: eventItem.endDate, format: DateFormats.TimeFormat) ?? "")"
+        checkinButton.backgroundColor = eventItem.eventType == .live ? UIColor.systemGreen : UIColor.systemGray4
     }
     
     func setImageView(with data: Data) {
