@@ -17,25 +17,25 @@ class BaseViewController: UIViewController, BaseViewModelDelegate {
     }
     
     func showErrorMessage(_ message: String) {
-        DispatchQueue.main.async { [weak self] in
+        DispatchQueue.main.async {
             let alertViewController = UIAlertController(title: "Error",
                                                         message: message,
                                                         preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK",
                                             style: .default) { _ in
                                                 alertViewController.dismiss(animated: true)
-                                                self?.navigationController?.popViewController(animated: true)
+                                                self.navigationController?.popViewController(animated: true)
             }
             alertViewController.addAction(alertAction)
-            self?.present(alertViewController, animated: true)
+            self.present(alertViewController, animated: true)
         }
     }
     
-    func refreshViewcontents() {
+    func refreshViewContents() {
         //hide shared loading indicator
     }
     
-    func setImage(at indexPath: IndexPath,
+    func setImage(at indexPath: IndexPath?,
                   with data: Data) {
     }
 }

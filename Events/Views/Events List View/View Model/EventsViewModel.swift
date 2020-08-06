@@ -81,14 +81,13 @@ class EventsViewModel {
     func fetchEvents() {
         interactor.fetchEvents(successBlock: { [weak self] response in
             self?.processEvents(from: response)
-            self?.delegate?.refreshViewcontents()
+            self?.delegate?.refreshViewContents()
         }) { [weak self] error in
             self?.delegate?.showErrorMessage(error.localizedDescription)
         }
     }
     
     func fetchImageForEvent(at indexPath: IndexPath) {
-        
         if events.count > indexPath.section {
             let eventsInSection = events[indexPath.section]
             if eventsInSection.count > indexPath.row {

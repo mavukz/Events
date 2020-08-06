@@ -13,6 +13,8 @@ struct DateFormats {
     static let SimpleDateFormat = "dd MMMM yyyy"
     static let SimpleDateFormatWithDayName = "EEEE, d MMM yyyy"
     static let TimeFormat = "hh:mm a"
+    static let Month = "MM"
+    static let Day = "dd"
     
 }
 

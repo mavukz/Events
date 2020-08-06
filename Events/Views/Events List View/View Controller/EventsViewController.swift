@@ -38,22 +38,24 @@ class EventsViewController: BaseViewController {
         }
     }
     
-    override func refreshViewcontents() {
+    override func refreshViewContents() {
         DispatchQueue.main.async {
             self.eventsTableView.reloadData()
             self.loadingIndicatorView.stopAnimating()
         }
     }
     
-    override func setImage(at indexPath: IndexPath, with data: Data) {
+    override func setImage(at indexPath: IndexPath?, with data: Data) {
         DispatchQueue.main.async {
-            let cell = self.eventsTableView.cellForRow(at: indexPath) as? EventsDetailedTableViewCell
-            cell?.setImageView(with: data)
+            if let index = indexPath {
+                let cell = self.eventsTableView.cellForRow(at: index) as? EventsDetailedTableViewCell
+                cell?.setImageView(with: data)
+            }
         }
     }
     
     override func showErrorMessage(_ message: String) {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             self.loadingIndicatorView.stopAnimating()
         }
         super.showErrorMessage(message)
