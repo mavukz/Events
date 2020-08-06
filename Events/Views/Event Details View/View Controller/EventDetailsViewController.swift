@@ -34,7 +34,7 @@ class EventDetailsViewController: BaseViewController {
         navigationController?.isNavigationBarHidden = false
         loadingIndicator.startAnimating()
         viewModel.fetchEvent()
-        viewModel.fetchImageForEvent()
+        viewModel.fetchImage()
         configureCollectionViewCells()
     }
     
@@ -45,8 +45,8 @@ class EventDetailsViewController: BaseViewController {
     override func refreshViewContents() {
         DispatchQueue.main.async {
             self.showFirstSegment()
-            self.loadingIndicator.stopAnimating()
             self.configureUI()
+            self.viewModel.fetchMedia()
         }
     }
     
@@ -104,7 +104,7 @@ class EventDetailsViewController: BaseViewController {
         monthLabel.text = viewModel.month
         dayLabel.text = viewModel.day
         bottomTitleLabel.text = viewModel.title
-        descriptionLabel.text = ""
+        descriptionLabel.text = viewModel.ratingQuestion
     }
     
     private func configureCollectionViewCells() {
@@ -121,7 +121,17 @@ extension EventDetailsViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
-        viewModel.fetchImageForEvent(at: indexPath)
+        viewModel.fetchImage(at: indexPath)
         return cell
+    }
+}
+
+extension EventDetailsViewController : EventDetailsViewModelDelegate {
+    
+    func fetchMediaSuccess() {
+        DispatchQueue.main.async {
+            self.imageCollectionView.reloadData()
+            self.loadingIndicator.stopAnimating()
+        }
     }
 }

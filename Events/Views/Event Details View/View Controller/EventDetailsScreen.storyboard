@@ -140,14 +140,14 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXm-Po-3tJ">
-                                                                <rect key="frame" x="82" y="15" width="37" height="18"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                                <rect key="frame" x="82" y="15" width="34.5" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vo-xU-Sdm">
-                                                                <rect key="frame" x="82" y="43" width="37" height="18"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                                <rect key="frame" x="82" y="32" width="34.5" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -156,7 +156,7 @@
                                                         <constraints>
                                                             <constraint firstItem="nXm-Po-3tJ" firstAttribute="top" secondItem="MEm-Id-Ows" secondAttribute="top" constant="15" id="5xO-Oj-0Ln"/>
                                                             <constraint firstAttribute="height" constant="80" id="Kst-kf-qCt"/>
-                                                            <constraint firstItem="3Vo-xU-Sdm" firstAttribute="top" secondItem="nXm-Po-3tJ" secondAttribute="bottom" constant="10" id="M7z-Ge-cb4"/>
+                                                            <constraint firstItem="3Vo-xU-Sdm" firstAttribute="top" secondItem="nXm-Po-3tJ" secondAttribute="bottom" id="M7z-Ge-cb4"/>
                                                             <constraint firstItem="0Bf-wN-Zrd" firstAttribute="top" secondItem="MEm-Id-Ows" secondAttribute="top" constant="15" id="VKu-6n-Lve"/>
                                                             <constraint firstItem="nXm-Po-3tJ" firstAttribute="leading" secondItem="0Bf-wN-Zrd" secondAttribute="trailing" constant="30" id="b6J-1a-2yw"/>
                                                             <constraint firstItem="0Bf-wN-Zrd" firstAttribute="leading" secondItem="MEm-Id-Ows" secondAttribute="leading" constant="15" id="cIZ-4M-ZSI"/>

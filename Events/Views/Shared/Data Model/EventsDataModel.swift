@@ -20,6 +20,7 @@ struct EventsDataModel {
     var title: String
     var location: String
     var eventID: String
+    var ratingQuestion: String
     var media:[Media]?
     
     private enum CodingKeys: String, CodingKey {
@@ -33,6 +34,7 @@ struct EventsDataModel {
         case title
         case location
         case eventID = "id"
+        case ratingQuestion
         case media
     }
 }
@@ -56,6 +58,7 @@ extension EventsDataModel: Decodable {
         title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
         location = try container.decodeIfPresent(String.self, forKey: .location) ?? ""
         eventID = try container.decodeIfPresent(String.self, forKey: .eventID) ?? ""
+        ratingQuestion = try container.decodeIfPresent(String.self, forKey: .ratingQuestion) ?? ""
         media = try container.decodeIfPresent([Media].self, forKey: .media)
     }
 }

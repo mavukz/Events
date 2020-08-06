@@ -11,7 +11,7 @@ import Foundation
 typealias FetchEventsSuccess = (_ events: [EventsDataModel]) -> Void
 typealias FetchEventSuccess = (_ event: EventsDataModel) -> Void
 typealias FetchImageSuccess = (_ imageData: Data) -> Void
-
+typealias FetchMediaSuccess = (_ media: [Media]) -> Void
 
 protocol EventsBoundary {
     
@@ -24,5 +24,9 @@ protocol EventsBoundary {
     
     func fetchImage(with url: String,
                     successBlock success: @escaping FetchImageSuccess,
+                    failureBlock failure: @escaping BoundaryFailureBlock)
+    
+    func fetchMedia(with url: String,
+                    successBlock success: @escaping FetchMediaSuccess,
                     failureBlock failure: @escaping BoundaryFailureBlock)
 }

@@ -8,13 +8,17 @@
 
 import Foundation
 
+protocol EventDetailsViewModelDelegate: BaseViewModelDelegate {
+    func fetchMediaSuccess()
+}
+
 class EventDetailsViewModel {
     
-    private weak var delegate: BaseViewModelDelegate?
-    private let dataModel: EventsDataModel
+    private weak var delegate: EventDetailsViewModelDelegate?
+    private var dataModel: EventsDataModel
     private let interactor: EventsBoundary
     
-    init(delegate: BaseViewModelDelegate,
+    init(delegate: EventDetailsViewModelDelegate,
          dataModel: EventsDataModel,
          interactor: EventsBoundary) {
         self.delegate = delegate
@@ -40,6 +44,10 @@ class EventDetailsViewModel {
         return (Date() >= dataModel.fromDate && Date() < dataModel.toDate)
     }
     
+    var ratingQuestion: String {
+        return dataModel.ratingQuestion
+    }
+    
     var numberOfItems: Int {
         return dataModel.media?.count ?? -1
     }
@@ -49,14 +57,17 @@ class EventDetailsViewModel {
     func fetchEvent() {
         interactor.fetchEvent(with: dataModel.eventID,
                               successBlock: { [weak self] response in
-                                // currently returning empty success response, not updating current data model
+                                let oldMedia = self?.dataModel.media
+                                //hack use old media as new one fails on deserialise
+                                self?.dataModel = response
+                                self?.dataModel.media = oldMedia
                                 self?.delegate?.refreshViewContents()
         }) { [weak self] error in
             self?.delegate?.showErrorMessage(error.localizedDescription)
         }
     }
     
-    func fetchImageForEvent() {
+    func fetchImage() {
         if let url = dataModel.media?.first?.mediaURL {
             interactor.fetchImage(with: url,
                                   successBlock: { [weak self] response in
@@ -67,7 +78,7 @@ class EventDetailsViewModel {
         }
     }
     
-    func fetchImageForEvent(at indexPath: IndexPath) {
+    func fetchImage(at indexPath: IndexPath) {
         if let media = dataModel.media,
             media.count > indexPath.row {
             let url = media[indexPath.row].mediaURL
@@ -79,5 +90,17 @@ class EventDetailsViewModel {
                 self?.delegate?.showErrorMessage(error.localizedDescription)
             }
         }
+    }
+    
+    //Fails to deserialise media response not using it
+    func fetchMedia() {
+//        interactor.fetchMedia(with: dataModel.eventID,
+//                              successBlock: { [weak self] response in
+//                                self?.dataModel.media = response
+//                                self?.delegate?.fetchMediaSuccess()
+//        }) { [weak self] error in
+//            self?.delegate?.showErrorMessage(error.localizedDescription)
+//        }
+        self.delegate?.fetchMediaSuccess()
     }
 }
