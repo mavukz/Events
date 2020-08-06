@@ -19,6 +19,7 @@ class EventsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
         loadingIndicatorView.startAnimating()
         viewModel.fetchEvents()
         configureTableView()
@@ -39,6 +40,20 @@ class EventsViewController: BaseViewController {
             self.eventsTableView.reloadData()
             self.loadingIndicatorView.stopAnimating()
         }
+    }
+    
+    override func setImage(at indexPath: IndexPath, with data: Data) {
+        DispatchQueue.main.async {
+            let cell = self.eventsTableView.cellForRow(at: indexPath) as? EventsDetailedTableViewCell
+            cell?.setImageView(with: data)
+        }
+    }
+    
+    override func showErrorMessage(_ message: String) {
+        DispatchQueue.main.sync {
+            self.loadingIndicatorView.stopAnimating()
+        }
+        super.showErrorMessage(message)
     }
     
     // MARK: - Private
@@ -72,6 +87,7 @@ extension EventsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailedCell") as? EventsDetailedTableViewCell
         if let eventItem = viewModel.event(at: indexPath) {
             cell?.populate(with: eventItem)
+            viewModel.fetchImageForEvent(at: indexPath)
             cell?.setNeedsUpdateConstraints()
             cell?.updateConstraintsIfNeeded()
         }

@@ -47,11 +47,11 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWA-Yi-Vn2">
                                         <rect key="frame" x="0.0" y="80" width="414" height="60"/>
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Rtk-5r-fwd">
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Rtk-5r-fwd">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
                                                 <segments>
-                                                    <segment title="First"/>
-                                                    <segment title="Second"/>
+                                                    <segment title="Details"/>
+                                                    <segment title="Gallery"/>
                                                 </segments>
                                                 <connections>
                                                     <action selector="indexChanged:" destination="2bH-cf-Ujh" eventType="valueChanged" id="hhg-T4-d6b"/>
@@ -69,7 +69,7 @@
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vfw-89-6sb">
                                         <rect key="frame" x="0.0" y="140" width="414" height="448"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tdM-NY-v53">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -141,12 +141,21 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Y5m-nc-kKG">
+                                <rect key="frame" x="182" y="423" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="6YX-yd-5yr"/>
+                                    <constraint firstAttribute="height" constant="50" id="g0H-RN-ngm"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="1K1-Lo-HPr" firstAttribute="bottom" secondItem="Yqi-D1-e20" secondAttribute="bottom" id="980-8H-kQF"/>
                             <constraint firstItem="1K1-Lo-HPr" firstAttribute="trailing" secondItem="Yqi-D1-e20" secondAttribute="trailing" id="P72-dx-DIO"/>
+                            <constraint firstItem="Y5m-nc-kKG" firstAttribute="centerX" secondItem="R4G-PC-BdI" secondAttribute="centerX" id="Re2-eo-2VX"/>
                             <constraint firstItem="Yqi-D1-e20" firstAttribute="top" secondItem="1K1-Lo-HPr" secondAttribute="top" id="W0p-Fm-Gwo"/>
+                            <constraint firstItem="Y5m-nc-kKG" firstAttribute="centerY" secondItem="R4G-PC-BdI" secondAttribute="centerY" id="iu7-fY-tqf"/>
                             <constraint firstItem="Yqi-D1-e20" firstAttribute="leading" secondItem="1K1-Lo-HPr" secondAttribute="leading" id="p5T-5c-Q15"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1K1-Lo-HPr"/>
@@ -158,6 +167,7 @@
                         <outlet property="detailedImageView" destination="UI9-Xt-4LA" id="gDu-y9-UgO"/>
                         <outlet property="detailedStackView" destination="6Ld-Jx-hQQ" id="Nm3-QH-IJl"/>
                         <outlet property="imageCollectionView" destination="vfw-89-6sb" id="AmY-QS-xqF"/>
+                        <outlet property="loadingIndicator" destination="Y5m-nc-kKG" id="SRt-ZC-5bb"/>
                         <outlet property="monthLabel" destination="0Bf-wN-Zrd" id="sMg-o0-a8s"/>
                         <outlet property="segmentedControl" destination="Rtk-5r-fwd" id="lGp-Gb-YuF"/>
                         <outlet property="statusLabel" destination="rMr-WB-9NL" id="cks-0g-66n"/>

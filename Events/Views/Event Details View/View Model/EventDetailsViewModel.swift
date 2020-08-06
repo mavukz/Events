@@ -21,4 +21,16 @@ class EventDetailsViewModel {
         self.dataModel = dataModel
         self.interactor = interactor
     }
+    
+    // MARK: - Interactor
+    
+    func fetchEvent() {
+        interactor.fetchEvent(with: dataModel.eventID,
+                              successBlock: { [weak self] response in
+                                print(response)
+                                self?.delegate?.refreshViewcontents()
+        }) { [weak self] error in
+            self?.delegate?.showErrorMessage(error.localizedDescription)
+        }
+    }
 }

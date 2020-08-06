@@ -37,4 +37,14 @@ class EventsInteractor: WebServicesManager, EventsBoundary {
             failure(error)
         }
     }
+    func fetchImage(with url: String,
+                    successBlock success: @escaping FetchImageSuccess,
+                    failureBlock failure: @escaping BoundaryFailureBlock) {
+        self.post(withImageURL: url,
+                  successBlock: { data in
+                    success(data)
+        }) { error in
+            failure(error)
+        }
+    }
 }

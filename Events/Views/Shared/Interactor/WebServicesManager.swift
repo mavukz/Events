@@ -9,6 +9,7 @@
 import Foundation
 
 typealias BoundarySuccessBlock = (_ payData: [String: Any]) -> Void
+typealias BoundarySuccessBlockImage = (_ imageData: Data) -> Void
 typealias BoundaryFailureBlock = (_ error: Error) -> Void
 
 class WebServicesManager {
@@ -38,6 +39,30 @@ class WebServicesManager {
                         } catch {
                             failure(error)
                         }
+                    } else {
+                        failure(error ?? self.createGenericError())
+                    }
+                }
+            } else {
+                failure(error ?? self.createGenericError())
+            }
+        }
+        task.resume()
+    }
+    
+    func post(withImageURL url: String,
+              successBlock success: @escaping BoundarySuccessBlockImage,
+              failureBlock failure: @escaping BoundaryFailureBlock) {
+        let url = URL(string: url)!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.addValue(WebServicesManager.ApiKey, forHTTPHeaderField: "ApiKey")
+        urlRequest.addValue(WebServicesManager.AppId, forHTTPHeaderField: "AppId")
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest) { (data, urlResponse, error) in
+            if let httpResponse = urlResponse as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    if let responseData = data {
+                        success(responseData)
                     } else {
                         failure(error ?? self.createGenericError())
                     }

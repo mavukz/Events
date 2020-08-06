@@ -81,6 +81,7 @@
 		75456CCC24DB3CBF00EDFD5C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				75E2896A24CF5050005B7215 /* Data Model */,
 				75E2896024CF4D53005B7215 /* Interactor */,
 				75456CCD24DB3CD400EDFD5C /* BaseViewModelDelegate.swift */,
 				75456CCF24DB3F0B00EDFD5C /* BaseViewController.swift */,
@@ -176,7 +177,6 @@
 			children = (
 				75E2895924CF4BDD005B7215 /* View Controller */,
 				75E2895824CF4BBB005B7215 /* View Model */,
-				75E2896A24CF5050005B7215 /* Data Model */,
 			);
 			path = "Events List View";
 			sourceTree = "<group>";

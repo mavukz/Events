@@ -11,6 +11,7 @@ import Foundation
 enum EventType {
     case live
     case upcoming
+    case unknown
 }
 
 struct EventDetailItem {

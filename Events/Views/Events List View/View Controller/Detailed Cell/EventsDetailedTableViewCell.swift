@@ -18,11 +18,15 @@ class EventsDetailedTableViewCell: UITableViewCell {
     @IBOutlet private var checkinButton: UIButton!
     
     func populate(with eventItem: EventDetailItem) {
-        topDateLabel.text = Date.string(date: eventItem.startDate ?? Date(),
+        topDateLabel.text = Date.string(date: eventItem.startDate,
                                         format: DateFormats.SimpleDateFormat)
         titleLabel.text = eventItem.title
         detailedView.backgroundColor = eventItem.eventType == .live ? UIColor.green : UIColor.systemGray
-        descriptionLabel.text = "\(eventItem.startDate ?? Date())\n\(eventItem.location ?? "")\n"
+        descriptionLabel.text = "\(eventItem.startDate)\n\(eventItem.location)\n"
         checkinButton.backgroundColor = eventItem.eventType == .live ? UIColor.systemGreen : UIColor.lightGray
+    }
+    
+    func setImageView(with data: Data) {
+        eventImageView.image = UIImage(data: data)
     }
 }

@@ -21,39 +21,65 @@ class EventDetailsViewController: BaseViewController {
     @IBOutlet private var descriptionLabel: UILabel!
     @IBOutlet private var imageCollectionView: UICollectionView!
     @IBOutlet private var detailedStackView: UIStackView!
+    @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
     
     private var dataModel: EventsDataModel!
     private lazy var viewModel = EventDetailsViewModel(delegate: self,
                                                        dataModel: dataModel,
                                                        interactor: EventsInteractor())
     
-    func populate(with dataModel: EventsDataModel) {
-        self.dataModel = dataModel
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
+        loadingIndicator.startAnimating()
+        viewModel.fetchEvent()
     }
     
     override func refreshViewcontents() {
-        
+        DispatchQueue.main.async {
+            self.showFirstSegment()
+            self.loadingIndicator.stopAnimating()
+        }
+    }
+    
+    override func showErrorMessage(_ message: String) {
+        DispatchQueue.main.sync { [weak self] in
+            self?.loadingIndicator.stopAnimating()
+        }
+        super.showErrorMessage(message)
+    }
+    
+    func populate(with dataModel: EventsDataModel) {
+        self.dataModel = dataModel
     }
     
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         switch index {
         case 0:
-            imageCollectionView.isHidden = true
-            detailedStackView.isHidden = false
-            titleAndStatusView.isHidden = false
+            showFirstSegment()
         case 1:
-            imageCollectionView.isHidden = false
-            detailedStackView.isHidden = true
-            titleAndStatusView.isHidden = true
+            showSecondSegment()
         default:
             return
         }
     }
+    
+    // MARK: - Private
+    
+    private func showFirstSegment() {
+        imageCollectionView.isHidden = true
+        detailedStackView.isHidden = false
+    }
+    
+    private func showSecondSegment() {
+        imageCollectionView.isHidden = false
+        detailedStackView.isHidden = true
+    }
 }
 
 extension EventDetailsViewController: UICollectionViewDataSource {
-   
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         1
     }

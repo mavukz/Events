@@ -8,14 +8,14 @@
 
 import Foundation
 
+
+
 class EventsViewModel {
     
     private weak var delegate: BaseViewModelDelegate?
     private let interactor: EventsBoundary
     private var events = [[EventsDataModel]]()
     private var eventItems = [[EventDetailItem]]()
-    private let headerTitles = ["Live Event(s)",
-                                "Upcoming Event(s)"];
     private var currentEvent: EventsDataModel?
     
     init(delegate: BaseViewModelDelegate,
@@ -50,19 +50,25 @@ class EventsViewModel {
     }
     
     func title(at section: Int) -> String {
-        if headerTitles.count > section {
-            return headerTitles[section]
+        if eventItems.count > section {
+            if let firstEventItem = eventItems[section].first {
+                return firstEventItem.eventType == .live ? "Live Event(s)" : "Upcoming Event(s)"
+            }
         }
         return ""
     }
     
     func eventType(at section: Int) -> EventType {
-        return section == 0 ? .live : .upcoming
+        if eventItems.count > section {
+            if let firstEventItem = eventItems[section].first {
+                return firstEventItem.eventType
+            }
+        }
+        return .unknown
     }
     
-    
     func selectedEvent(at indexPath: IndexPath) {
-        if eventItems.count > indexPath.section {
+        if events.count > indexPath.section {
             let eventsInSection = events[indexPath.section]
             if eventsInSection.count > indexPath.row {
                 currentEvent = eventsInSection[indexPath.row]
@@ -78,6 +84,24 @@ class EventsViewModel {
             self?.delegate?.refreshViewcontents()
         }) { [weak self] error in
             self?.delegate?.showErrorMessage(error.localizedDescription)
+        }
+    }
+    
+    func fetchImageForEvent(at indexPath: IndexPath) {
+        
+        if events.count > indexPath.section {
+            let eventsInSection = events[indexPath.section]
+            if eventsInSection.count > indexPath.row {
+                let event = eventsInSection[indexPath.row]
+                if let url = event.media?.first?.mediaURL {
+                    interactor.fetchImage(with: url,
+                                          successBlock: { [weak self] response in
+                                            self?.delegate?.setImage(at: indexPath, with: response)
+                    }) { [weak self] error in
+                        self?.delegate?.showErrorMessage(error.localizedDescription)
+                    }
+                }
+            }
         }
     }
     

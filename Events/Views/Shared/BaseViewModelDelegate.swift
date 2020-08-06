@@ -11,4 +11,7 @@ import Foundation
 protocol BaseViewModelDelegate: NSObjectProtocol {
     func refreshViewcontents()
     func showErrorMessage(_ message: String)
+    // Only adding this here since its shared on both views
+    func setImage(at indexPath: IndexPath,
+                  with data: Data)
 }
